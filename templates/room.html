@@ -6,7 +6,6 @@
 		<!-- for rendering messages -->
 	</div>
 	<div class="input">
-		<!-- Changed input to textarea -->
 		<textarea rows="2" placeholder="Enter your message..." name="message" id="message"></textarea>
 		<button type="button" name="send" id="send-btn" onclick="sendMessage()">
 			Send
@@ -28,7 +27,6 @@
     	        </div>
     	    `;
 		messages.innerHTML += content;
-		// Auto-scroll to the latest message
 		messages.scrollTop = messages.scrollHeight;
 	};
 
@@ -37,16 +35,19 @@
 	});
 
 	const sendMessage = () => {
-		if (messageInput.value.trim() === "") return;
+		if (!messageInput || messageInput.value.trim() === "") return;
 		socketio.emit("message", { data: messageInput.value });
 		messageInput.value = "";
 	};
 
-	// Event listener to handle Enter and Shift+Enter
-	messageInput.addEventListener("keydown", (event) => {
-		if (event.key === "Enter" && !event.shiftKey) {
-			event.preventDefault(); // Prevents adding a new line
-			sendMessage();
+	document.addEventListener("DOMContentLoaded", () => {
+		if (messageInput) {
+			messageInput.addEventListener("keydown", (event) => {
+				if (event.key === "Enter" && !event.shiftKey) {
+					event.preventDefault();
+					sendMessage();
+				}
+			});
 		}
 	});
 </script>
