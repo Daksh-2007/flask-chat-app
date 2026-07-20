@@ -6,7 +6,7 @@ A lightweight, high-performance real-time chat web application built with **Flas
 
 ## 🚀 Live Demo
 
-[![Live Demo](https://flask-chat-app-u4hq.onrender.com)  
+[[Live Demo](https://flask-chat-app-u4hq.onrender.com)  
 
 
 ---
